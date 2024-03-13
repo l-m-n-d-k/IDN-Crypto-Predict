@@ -1,0 +1,126 @@
+<!DOCTYPE html> <!-- Определение типа документа -->
+<html>
+<head>
+    <meta charset="UTF-8"> <!-- Установка кодировки символов для документа -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Настройка видимой области страницы для корректного отображения на устройствах с разным разрешением -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Подключение библиотеки Chart.js для отрисовки графиков -->
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- Подключение внешнего файла стилей CSS -->
+    <title>Login Form</title> <!-- Заголовок вкладки браузера -->
+</head>
+<body>
+    <div class="login-box">
+        <h2><span class="data-format">Вход</span></h2> <!-- Заголовок формы входа -->
+        <form onsubmit="return validateLogin();"> <!-- Форма входа с обработчиком на событие submit -->
+          <div class="user-box"> <!-- Поле ввода имени пользователя -->
+            <input type="text" id="username" required="">
+            <label>Имя пользователя</label>
+          </div>
+          <div class="user-box"> <!-- Поле ввода пароля -->
+            <input type="password" id="password" required="">
+            <label>Пароль</label>
+          </div>
+          <a href="#" onclick="event.preventDefault(); validateLogin();"> <!-- Кнопка для входа -->
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Войти
+          </a>
+          <a href="#" onclick="event.preventDefault(); showRegistrationForm();"> <!-- Кнопка для показа формы регистрации -->
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Регистрация
+          </a>
+      </div>
+      
+      <!-- Модальные окна для сообщений об успехе или ошибке -->
+      <div id="successModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Регистрация успешна!</p>
+        </div>
+      </div>
+      
+      <div id="failModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Неверное имя пользователя или пароль!</p>
+        </div>
+      </div>
+      
+      <!-- Форма регистрации, изначально скрытая -->
+      <div id="register-box" style="display:none;">
+        <h2><span class="data-format">Регистрация</span></h2> <!-- Заголовок формы регистрации -->
+        <form id="registrationForm">
+          <div class="user-box"> <!-- Поле для логина -->
+            <input type="text" id="register-username" required>
+            <label>Логин</label>
+          </div>
+          <div class="user-box"> <!-- Поле для пароля -->
+            <input type="password" id="register-password" required>
+            <label>Пароль</label>
+          </div>
+          <div class="user-box"> <!-- Поле для электронной почты -->
+            <input type="email" id="register-email" required>
+            <label>Почта</label>
+          </div>
+          <button type="button" onclick="registerUser()">Зарегистрировать</button> <!-- Кнопка регистрации -->
+        </form>
+      </div>
+      
+      <div class="theme-switcher" onclick="toggleTheme()"> <!-- Переключатель темы -->
+        💡
+      </div>
+      
+      <!-- Контейнер для информации и инструкций по использованию бота -->
+      <div id="bot-container">
+        <h1>IDN Crypto Predict</h1>
+        <div>
+          <a href="#" class="button" onclick="showInfo('info'); return false;">Информация<span></span><span></span><span></span><span></span></a>
+          <a href="#" class="button" onclick="showInfo('instruction'); return false;">Инструкция<span></span><span></span><span></span><span></span></a>
+        </div>
+        <div id="info" class="info-text">
+          <p><span class="data-format">Trading-bot</span> – это нейросеть для предсказания цен на биткоин,
+            анализирующая рыночные данные с использованием методов машинного
+            обучения. Основная цель – помочь трейдерам в принятии решений на рынке
+            криптовалют. Точность прогнозов ограничена, так как нейросеть пока не
+            может мониторить новости, влияющие на рынок.</p> 
+        </div>
+        <div id="instruction" class="info-text">
+          <p>
+            Чтобы сформулировать запрос к нейросети <span class="data-format">IDN Trading-bot</span> для получения
+            прогноза по открытию <span class="data-format">(open)</span>, максимуму <span class="data-format">(high)</span>, 
+            минимуму <span class="data-format">(low)</span>, и закрытию <span class="data-format">(close)</span> цены биткоина <span class="data-format">(close)</span> <span class="data-format">(BTC)</span> на конкретную дату и время,
+            следуйте следующему шаблону:
+          </p>
+          <p>
+            <code
+              >"What will be open, high, low, close of BTC at the moment of
+              <span class="data-format">YYYY-MM-DD HH:MM:SS?</span></code
+            >
+          </p>
+      
+          <p>Здесь:</p>
+          <ul>
+            <li>
+              <span class="data-format">YYYY-MM-DD</span> – дата, на которую вы
+              хотите получить прогноз. Формат: год (4 цифры)-месяц (2 цифры)-день
+              (2 цифры).
+            </li>
+            <li>
+              <span class="data-format">HH:MM:SS</span> – время, на которое вы
+              хотите получить прогноз. Формат: часы (2 цифры)-минуты (2
+              цифры)-секунды (2 цифры).
+            </li>
+          </ul>
+        </div>
+        <div id="dialogue-history"></div> <!-- Контейнер для истории диалога с ботом -->
+        <input type="text" id="query-input" placeholder="Введите ваш запрос"> <!-- Поле ввода запроса -->
+        <button id="send-btn" class="button" onclick="sendQuery(); return false;">Отправить</button> <!-- Кнопка отправки запроса -->
+        <canvas id="bitcoinChart" width="800" height="400"></canvas> <!-- Канвас для графика биткоина -->
+      </div>
+<script src="/static/js/scripts.js"></script> <!-- Подключение внешнего файла с JavaScript -->
+</body>
+</html>
