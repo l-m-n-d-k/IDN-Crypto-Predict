@@ -5,27 +5,47 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeTimedSerializer
 import sqlite3
 import requests
+import csv
 
 app = Flask(__name__)
 
 def generate_text(prompt):
     try:
-        client = OpenAI(api_key='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')
+        client = OpenAI(api_key='')
         response = client.chat.completions.create(
             timeout=60,
             model="ft:gpt-3.5-turbo-1106:t1::8mJFSyqI",
             messages=[
-                {"role": "system", "content": "IDN является чат-ботом, который помогает предсказывать значение BTC с использованием текущей даты; open, high, low и close - это термины, используемые в торговле акциями для обозначения цен, с которых акция начала торговаться, достигла своих максимальных и минимальных точек и закончила торговаться в заданный период времени, соответственно."},
+                {
+                    "role": "system",
+                    "content": "IDN является чат-ботом, который помогает предсказывать значение BTC с использованием текущей даты; open, high, low и close - это термины, используемые в торговле акциями для обозначения цен, с которых акция начала торговаться, достигла своих максимальных и минимальных точек и закончила торговаться в заданный период времени, соответственно."
+                },
                 {"role": "user", "content": prompt}
             ],
         )
         db = get_db_connection()
-        db.execute('INSERT INTO interactions (user_input, model_response) VALUES (?, ?)',
-                   (prompt, response.choices[0].message.content))
+        db.execute('INSERT INTO interactions (user_input, model_response) VALUES (?, ?)', (prompt, response.choices[0].message.content))
         db.commit()
-        return float(response.choices[0].message.content.split()[-1])
+    
+        update_csv(prompt, response.choices[0].message.content)
+        
+        try:
+            return float(response.choices[0].message.content.split()[-1])
+        except ValueError:
+            return response.choices[0].message.content
     except Exception as e:
         return str(e)
+
+
+def update_csv(input_data, output_data, file_path='C:\\Users\\andre\\Programming_projects\\Sait_future\\model_interactions.csv'):
+    try:
+        with open(file_path, mode='a', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            if file.tell() == 0:
+                writer.writerow(['Input', 'Output'])
+            writer.writerow([input_data, output_data])
+    except Exception as e:
+        print(f"Ошибка при попытке записи в файл: {e}")
 
 
 
