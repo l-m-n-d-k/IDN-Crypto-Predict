@@ -36,6 +36,26 @@ def generate_text(prompt):
     except Exception as e:
         return str(e)
 
+    '''try:
+        client = OpenAI(api_key='')
+        response2 = client.chat.completions.create(
+            timeout=60,
+            model="pass", #пока так, сделаем вторую модель 
+            messages=[
+                {
+                    "role": "system",
+                    "content": "pass" # system content второй нейросети для bids
+                },
+                {"role": "user", "content": response}
+            ],
+        )
+        
+        try:
+            return float(response['choices'][0]['message']['content'])
+        except ValueError:
+            return response2['choices'][0]['message']['content']
+    except Exception as e:
+        return str(e)'''
 
 def update_csv(input_data, output_data, file_path='C:\\Users\\andre\\Programming_projects\\Sait_future\\model_interactions.csv'):
     try:
@@ -46,8 +66,6 @@ def update_csv(input_data, output_data, file_path='C:\\Users\\andre\\Programming
             writer.writerow([input_data, output_data])
     except Exception as e:
         print(f"Ошибка при попытке записи в файл: {e}")
-
-
 
 # URL API Binance для получения текущей цены BTC
 binance_api_url = 'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'
@@ -188,7 +206,6 @@ def interactions():
     interactions = db.execute('SELECT * FROM interactions ORDER BY timestamp DESC').fetchall()
     return render_template('interactions.html', interactions=interactions)
 
-
 @app.route('/confirm/<token>')
 def confirm_email(token):
     try:
@@ -200,8 +217,6 @@ def confirm_email(token):
         return 'Ваш email был успешно подтвержден!'
     except:
         return 'Ссылка для подтверждения недействительна или истек срок ее действия.'
-
-
 
 if __name__ == '__main__':
     # Запуск сервера Flask в режиме отладки
