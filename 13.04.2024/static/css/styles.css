@@ -1,0 +1,623 @@
+html {
+    height: 100%;
+  }
+  body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+    overflow-x: hidden;
+  }
+  
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .login-box .user-box {
+    position: relative;
+  }
+  
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+  
+  .login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+  
+  .login-box a:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+  
+  .login-box a span {
+    position: absolute;
+    display: block;
+  }
+  
+  .login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 450px;
+    padding: 50px;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  #register-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px; 
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.813);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.651);
+    border-radius: 10px;
+  }
+  
+  #register-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  #register-box .user-box {
+    position: relative;
+  }
+  
+  #register-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px; 
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  
+  #register-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  #register-box .user-box input:focus ~ label,
+  #register-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+  
+  #register-box button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px; 
+    letter-spacing: 4px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border: 1px solid #03e9f4; 
+  }
+  
+  #register-box button:hover {
+    background: #03e9f4;
+    color: #fff;
+  }
+  
+  #register-box button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border: 1px solid #03e9f4;
+  }
+  
+  #register-box button:hover {
+    background: #03e9f4;
+    color: #fff;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+  
+  #register-box button span {
+    position: absolute;
+    display: block;
+  }
+  
+  #register-box button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  #register-box button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s;
+  }
+  
+  #register-box button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s;
+  }
+  
+  #register-box button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+  
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  .modal-content {
+    background: linear-gradient(#141e30, #243b55);
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888; 
+    width: 80%; 
+    color: white; 
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px; 
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #03e9f4;
+    text-decoration: none;
+    cursor: pointer; 
+  }
+  
+  #bot-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-height: 90%;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.7);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    border-radius: 15px;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  #bot-container h1 {
+    color: #03e9f4;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #query-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #03e9f4;
+    background: transparent;
+    color: #fff;
+  }
+  
+  #send-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #03e9f4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #dialogue-history {
+    background: #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 300px;
+    overflow-y: auto;
+    border-radius: 5px;
+  }
+  
+  .dialogue-entry {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-left: 3px solid #03e9f4;
+  }
+  
+  .button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin: 0 5px;
+    cursor: pointer;
+    letter-spacing: 4px;
+    border-radius: 5px;
+  }
+  
+  .button:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+  
+  .button span {
+    position: absolute;
+    display: block;
+  }
+  
+  #send-btn {
+    background: transparent;
+    color: #03e9f4;
+    transition: .5s;
+  }
+  
+  #send-btn:hover {
+    background: #03e9f4;
+    color: #fff;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+  
+  .data-format {
+    color: #03e9f4;
+    font-weight: bold;
+  }
+  
+  .info-text {
+    display: none;
+    color: #fff;
+    margin-top: 10px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #2c3e50;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #03e9f4;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #019dbd;
+  }
+  
+  .theme-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1000;
+  }
+  
+  .light-theme {
+    background: linear-gradient(#fff, #f0f0f0);
+    color: #000;
+  }
+  
+  .light-theme .login-box, .light-theme #bot-container {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+  }
+  
+  .light-theme .login-box h2, .light-theme .login-box .user-box label, .light-theme .login-box form a, .light-theme #bot-container h1 {
+    color: #000;
+  }
+  
+  .light-theme .login-box .user-box input, .light-theme #query-input {
+    color: #000;
+    border-color: #000;
+  }
+  
+  .light-theme .login-box form a, .light-theme .button, .light-theme #send-btn {
+    color: #000;
+    border-color: #000;
+  }
+  
+  .light-theme .login-box form a:hover, .light-theme .button:hover, .light-theme #send-btn:hover {
+    background: #ddd;
+    color: #000;
+  }
+  
+  .light-theme #dialogue-history {
+    background: #fff;
+    color: #000;
+  }
+  
+  .light-theme .dialogue-entry {
+    border-left: 3px solid #03e9f4;
+  }
+  
+  .light-theme .info-text,
+  .light-theme .dialogue-entry {
+    color: #000;
+  }
+  
+  .light-theme .login-box h2,
+  .light-theme .login-box .user-box label,
+  .light-theme .login-box form a,
+  .light-theme #bot-container h1,
+  .light-theme #query-input,
+  .light-theme #send-btn {
+    color: #000;
+  }
+  
+  .light-theme .login-box .user-box input,
+  .light-theme #query-input {
+    border-color: #000;
+  }
+  
+  .active {
+    display: block;
+  }
+
+  .button-container {
+    position: fixed; 
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center; 
+    z-index: 1000; 
+  }
+  
+  #telegram-btn {
+    background-color: #109bbd;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  #telegram-btn:hover {
+    background-color: white;
+    color: black;
+  }
+  
